@@ -10,6 +10,8 @@ public class PuzzleGameManager : MonoBehaviour {
 	private List<Animator> puzzleButtonAnims = new List<Animator>();
 	[SerializeField]
 	private List<Sprite> gamePuzzleSprites = new List<Sprite>();
+	[SerializeField]
+	private GameFinished gameFinished;
 	private int level;
 	private string selectedPuzzle;
 	private bool firstGuess, secondGuess;
@@ -56,6 +58,14 @@ public class PuzzleGameManager : MonoBehaviour {
 		this.selectedPuzzle = selectedPuzzle;
 	}
 
+	public List<Animator> ResetGamePlay () {
+		firstGuess = secondGuess = false;
+		countGuesses = 0;
+		correctGuesses = 0;
+		gameFinished.HideGameFinishedPanel ();
+		return puzzleButtonAnims;
+	}
+
 	private void AddListeners () {
 		foreach (Button btn in puzzleButtons) {
 			btn.onClick.RemoveAllListeners ();
@@ -66,7 +76,37 @@ public class PuzzleGameManager : MonoBehaviour {
 	private void CheckIfGameIsFinished () {
 		correctGuesses++;
 		if (correctGuesses == gameGuesses) {
-			Debug.Log ("Game over");
+			CheckHowManyGuesses ();
+		}
+	}
+
+	private void CheckHowManyGuesses () {
+		int howManyGuesses = 0;
+
+		switch (level) {
+		case 0:
+			howManyGuesses = 5;
+			break;
+		case 1:
+			howManyGuesses = 10;
+			break;
+		case 2:
+			howManyGuesses = 15;
+			break;
+		case 3:
+			howManyGuesses = 20;
+			break;
+		case 4:
+			howManyGuesses = 25;
+			break;
+		}
+
+		if (countGuesses < howManyGuesses) {
+			gameFinished.ShowGameFinishedPanel (3);
+		} else if (countGuesses < (howManyGuesses + 5)) {
+			gameFinished.ShowGameFinishedPanel (2);
+		} else {
+			gameFinished.ShowGameFinishedPanel (1);
 		}
 	}
 

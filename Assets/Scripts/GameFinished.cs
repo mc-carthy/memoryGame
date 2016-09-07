@@ -8,10 +8,6 @@ public class GameFinished : MonoBehaviour {
 	[SerializeField]
 	private Animator gameFinishedAnim, star0Anim, star1Anim, star2Anim, textAnim;
 
-	private void Start () {
-		//ShowGameFinishedPanel (3);
-	}
-
 	public void ShowGameFinishedPanel (int stars) {
 		StartCoroutine (ShowPanel (stars));
 	}

@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class LoadPuzzleGame : MonoBehaviour {
 
 	[SerializeField]
 	private LayoutPuzzleButtons layoutPuzzleButtons;
+	[SerializeField]
+	private PuzzleGameManager puzzleGameManager;
 	[SerializeField]
 	private GameObject puzzleLevelSelectPanel;
 	[SerializeField]
@@ -15,6 +18,7 @@ public class LoadPuzzleGame : MonoBehaviour {
 	private Animator puzzleGameAnim0, puzzleGameAnim1, puzzleGameAnim2, puzzleGameAnim3, puzzleGameAnim4;
 	private int puzzleLevel;
 	private string selectedPuzzle;
+	private List<Animator> anims;
 
 	public void LoadPuzzle (int level, string puzzle) {
 		this.puzzleLevel = level;
@@ -42,6 +46,7 @@ public class LoadPuzzleGame : MonoBehaviour {
 	}
 
 	public void BackToPuzzleLevelSelectMenu () {
+		anims = puzzleGameManager.ResetGamePlay ();
 		switch (puzzleLevel) {
 		case 0:
 			StartCoroutine(LoadPuzzleLevelSelectMenu(puzzleGamePanel0, puzzleGameAnim0));
@@ -66,7 +71,12 @@ public class LoadPuzzleGame : MonoBehaviour {
 		puzzleLevelSelectAnim.Play ("levelSelectSlideIn");
 		puzzleGameAnim.Play ("puzzleGamePanelSlideOut");
 		yield return new WaitForSeconds (1f);
-		puzzleGamePanel.SetActive (false);	}
+		foreach (Animator anim in anims) {
+			anim.Play ("cardIdle");
+		}
+		yield return new WaitForSeconds (0.5f);
+		puzzleGamePanel.SetActive (false);
+	}
 
 
 	private IEnumerator LoadPuzzleGamePanel (GameObject puzzleGamePanel, Animator puzzleGameAnim) {
