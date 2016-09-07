@@ -7,6 +7,8 @@ public class CreatePuzzleButtonsAndAnimators : MonoBehaviour {
 
 	[SerializeField]
 	private Button puzzleButton;
+	[SerializeField]
+	private LayoutPuzzleButtons layoutPuzzleButtons;
 
 	private int puzzleGame0 = 6;
 	private int puzzleGame1 = 12;
@@ -31,6 +33,23 @@ public class CreatePuzzleButtonsAndAnimators : MonoBehaviour {
 		GetAnimators ();
 	}
 
+	private void Start () {
+		AssignButtonsAndAnimators ();
+	}
+
+	private void AssignButtonsAndAnimators () {
+		layoutPuzzleButtons.level0Buttons = level0Buttons;
+		layoutPuzzleButtons.level1Buttons = level1Buttons;
+		layoutPuzzleButtons.level2Buttons = level2Buttons;
+		layoutPuzzleButtons.level3Buttons = level3Buttons;
+		layoutPuzzleButtons.level4Buttons = level4Buttons;
+
+		layoutPuzzleButtons.level0Anims = level0Anims;
+		layoutPuzzleButtons.level1Anims = level1Anims;
+		layoutPuzzleButtons.level2Anims = level2Anims;
+		layoutPuzzleButtons.level3Anims = level3Anims;
+		layoutPuzzleButtons.level4Anims = level4Anims;
+	}
 
 	private void CreateButtons () {
 		for (int i = 0; i < puzzleGame0; i++) {
@@ -76,17 +95,17 @@ public class CreatePuzzleButtonsAndAnimators : MonoBehaviour {
 		}
 
 		for (int i = 0; i < level2Buttons.Count; i++) {
-			level2Anims.Add (level1Buttons [i].gameObject.GetComponent<Animator> ());
+			level2Anims.Add (level2Buttons [i].gameObject.GetComponent<Animator> ());
 			level2Buttons [i].gameObject.SetActive (false);
 		}
 
 		for (int i = 0; i < level3Buttons.Count; i++) {
-			level3Anims.Add (level0Buttons [i].gameObject.GetComponent<Animator> ());
+			level3Anims.Add (level3Buttons [i].gameObject.GetComponent<Animator> ());
 			level3Buttons [i].gameObject.SetActive (false);
 		}
 
 		for (int i = 0; i < level4Buttons.Count; i++) {
-			level4Anims.Add (level0Buttons [i].gameObject.GetComponent<Animator> ());
+			level4Anims.Add (level4Buttons [i].gameObject.GetComponent<Animator> ());
 			level4Buttons [i].gameObject.SetActive (false);
 		}
 	}
