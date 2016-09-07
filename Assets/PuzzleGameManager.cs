@@ -12,11 +12,29 @@ public class PuzzleGameManager : MonoBehaviour {
 	private List<Sprite> gamePuzzleSprites = new List<Sprite>();
 	private int level;
 	private string selectedPuzzle;
+	private bool firstGuess, secondGuess;
+	private int firstGuessIndex, secondGuessIndex;
+	private string firstGuessName, secondGuessName;
 
 	public void PickAPuzzle () {
 		//Debug.Log ("The selected button is " + EventSystem.current.currentSelectedGameObject.name);
 		int index = int.Parse(EventSystem.current.currentSelectedGameObject.name);
-		StartCoroutine (TurnCardUp (puzzleButtonAnims[index], puzzleButtons[index], gamePuzzleSprites[index]));
+
+		if (!firstGuess) {
+			firstGuess = true;
+			firstGuessIndex = int.Parse(EventSystem.current.currentSelectedGameObject.name);
+			firstGuessName = gamePuzzleSprites [firstGuessIndex].name;
+			StartCoroutine (TurnCardUp (puzzleButtonAnims[firstGuessIndex], puzzleButtons[firstGuessIndex], gamePuzzleSprites[firstGuessIndex]));
+		} else if (!secondGuess) {
+			secondGuess = true;
+			secondGuessIndex = int.Parse(EventSystem.current.currentSelectedGameObject.name);
+			secondGuessName = gamePuzzleSprites [secondGuessIndex].name;
+			StartCoroutine (TurnCardUp (puzzleButtonAnims[secondGuessIndex], puzzleButtons[secondGuessIndex], gamePuzzleSprites[secondGuessIndex]));
+		}
+
+		if (firstGuessName == secondGuessName) {
+
+		}
 	}
 
 	public void SetUpButtonsAndAnimators (List<Button> buttons, List<Animator> animators) {
@@ -47,15 +65,16 @@ public class PuzzleGameManager : MonoBehaviour {
 
 	private IEnumerator TurnCardUp (Animator anim, Button btn, Sprite puzzleImage) {
 		anim.Play ("cardTurnUp");
-		yield return new WaitForSeconds (0.4f);
+		yield return new WaitForSeconds (0.5f);
+		Sprite cardBack = btn.image.sprite;
 		btn.image.sprite = puzzleImage;
-		yield return new WaitForSeconds (1f);
-		StartCoroutine (TurnCardDown (anim, btn, puzzleImage));
+		//yield return new WaitForSeconds (1f);
+		//StartCoroutine (TurnCardDown (anim, btn, cardBack));
 	}
 
 	private IEnumerator TurnCardDown (Animator anim, Button btn, Sprite puzzleImage) {
 		anim.Play ("cardTurnDown");
-		yield return new WaitForSeconds (0.4f);
+		yield return new WaitForSeconds (0.5f);
 		btn.image.sprite = puzzleImage;
 	}
 }
