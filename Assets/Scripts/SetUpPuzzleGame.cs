@@ -83,10 +83,15 @@ public class SetUpPuzzleGame : MonoBehaviour {
 			}
 			break;
 		}
-		//Shuffle (gamePuzzles);
+		Shuffle (gamePuzzles);
 	}
 
 	private void Shuffle (List<Sprite> list) {
-
+		for (int i = 0; i < list.Count; i++) {
+			Sprite temp = list [i];
+			int random = Random.Range (0, list.Count);
+			list [i] = list [random];
+			list [random] = temp;
+		}
 	}
 }
