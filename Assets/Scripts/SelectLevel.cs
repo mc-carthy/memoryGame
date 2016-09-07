@@ -18,12 +18,11 @@ public class SelectLevel : MonoBehaviour {
 
 	public void SelectPuzzleLevel() {
 		int level = int.Parse(EventSystem.current.currentSelectedGameObject.name);
-		//loadPuzzleGame.LoadPuzzle (level, selectedPuzzle);
+		loadPuzzleGame.LoadPuzzle (level, selectedPuzzle);
 	}
 
 	public void SetSelectedPuzzle (string selectedPuzzle) {
 		this.selectedPuzzle = selectedPuzzle;
-		Debug.Log("The selected puzzle is " + selectedPuzzle);
 	}
 
 	private IEnumerator ShowPuzzleSelectMenu () {
