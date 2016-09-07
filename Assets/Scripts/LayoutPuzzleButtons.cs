@@ -9,6 +9,8 @@ public class LayoutPuzzleButtons : MonoBehaviour {
 	public List<Animator> level0Anims, level1Anims, level2Anims, level3Anims, level4Anims;
 
 	[SerializeField]
+	private SetUpPuzzleGame setUpPuzzleGame;
+	[SerializeField]
 	private Transform puzzleLevel0, puzzleLevel1, puzzleLevel2, puzzleLevel3, puzzleLevel4;
 	[SerializeField]
 	private Sprite[] puzzleCardBacks;
@@ -18,6 +20,7 @@ public class LayoutPuzzleButtons : MonoBehaviour {
 	public void LayoutButtons (int level, string puzzle) {
 		this.puzzleLevel = level;
 		this.selectedPuzzle = puzzle;
+		setUpPuzzleGame.SetLevelAndPuzzle (puzzleLevel, selectedPuzzle);
 		LayoutPuzzle ();
 	}
 
