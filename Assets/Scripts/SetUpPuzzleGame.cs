@@ -5,8 +5,9 @@ using System.Collections.Generic;
 
 public class SetUpPuzzleGame : MonoBehaviour {
 
-	private Sprite[] candyPuzzleSprites, transportPuzzleSprites, fruitPuzzleSprites;
 	[SerializeField]
+	private PuzzleGameManager puzzleGameManager;
+	private Sprite[] candyPuzzleSprites, transportPuzzleSprites, fruitPuzzleSprites;
 	private List<Sprite> gamePuzzles = new List<Sprite>();
 	private List<Button> puzzleButtons = new List<Button>();
 	private List<Animator> puzzleButtonAnimators = new List<Animator>();
@@ -24,11 +25,13 @@ public class SetUpPuzzleGame : MonoBehaviour {
 		this.level = level;
 		this.selectedPuzzle = selectedPuzzle;
 		PrepareGameSprites ();
+		puzzleGameManager.SetGamePuzzleSprites (this.gamePuzzles);
 	}
 
 	public void SetPuzzleButtonAndAnimators (List<Button> puzzleButtons, List<Animator> puzzleButtonAnimators) {
 		this.puzzleButtons = puzzleButtons;
 		this.puzzleButtonAnimators = puzzleButtonAnimators;
+		puzzleGameManager.SetUpButtonsAndAnimators (puzzleButtons, puzzleButtonAnimators);
 	}
 
 	private void PrepareGameSprites () {

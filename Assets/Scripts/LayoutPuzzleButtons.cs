@@ -41,6 +41,7 @@ public class LayoutPuzzleButtons : MonoBehaviour {
 					}
 				}
 			}
+			setUpPuzzleGame.SetPuzzleButtonAndAnimators (level0Buttons, level0Anims);
 			break;
 		case 1:
 			foreach (Button btn in level1Buttons) {
@@ -57,6 +58,7 @@ public class LayoutPuzzleButtons : MonoBehaviour {
 					}
 				}
 			}
+			setUpPuzzleGame.SetPuzzleButtonAndAnimators (level1Buttons, level1Anims);
 			break;
 		case 2:
 			foreach (Button btn in level2Buttons) {
@@ -73,6 +75,7 @@ public class LayoutPuzzleButtons : MonoBehaviour {
 					}
 				}
 			}
+			setUpPuzzleGame.SetPuzzleButtonAndAnimators (level2Buttons, level2Anims);
 			break;
 		case 3:
 			foreach (Button btn in level3Buttons) {
@@ -89,6 +92,7 @@ public class LayoutPuzzleButtons : MonoBehaviour {
 					}
 				}
 			}
+			setUpPuzzleGame.SetPuzzleButtonAndAnimators (level3Buttons, level3Anims);
 			break;
 		case 4:
 			foreach (Button btn in level4Buttons) {
@@ -105,6 +109,7 @@ public class LayoutPuzzleButtons : MonoBehaviour {
 					}
 				}
 			}
+			setUpPuzzleGame.SetPuzzleButtonAndAnimators (level4Buttons, level4Anims);
 			break;
 		}
 	}
