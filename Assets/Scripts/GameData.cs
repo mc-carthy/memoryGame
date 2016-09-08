@@ -36,7 +36,7 @@ public class GameData {
 		return fruitLevels;
 	}
 
-	public void SetCandyLevelStars (bool[] candyLevelStars) {
+	public void SetCandyLevelStars (int[] candyLevelStars) {
 		this.candyLevelStars = candyLevelStars;
 	}
 
@@ -44,7 +44,7 @@ public class GameData {
 		return candyLevelStars;
 	}
 
-	public void SetTransportLevelStars (bool[] transportLevelStars) {
+	public void SetTransportLevelStars (int[] transportLevelStars) {
 		this.transportLevelStars = transportLevelStars;
 	}
 
@@ -52,7 +52,7 @@ public class GameData {
 		return transportLevelStars;
 	}
 
-	public void SetFruitLevelStars (bool[] fruitLevelStars) {
+	public void SetFruitLevelStars (int[] fruitLevelStars) {
 		this.fruitLevelStars = fruitLevelStars;
 	}
 
