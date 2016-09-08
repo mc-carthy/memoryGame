@@ -68,6 +68,7 @@ public class PuzzleGameSaver : MonoBehaviour {
 
 			for (int i = 1; i < candyLevels.Length; i++) {
 				candyLevels [i] = false;
+				Debug.Log (candyLevels [i]);
 				transportLevels [i] = false;
 				fruitLevels [i] = false;
 			}
