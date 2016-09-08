@@ -45,6 +45,34 @@ public class PuzzleGameSaver : MonoBehaviour {
 		}
 	}
 
+	public void SaveGameData () {
+		FileStream file = null;
+		try {
+			BinaryFormatter bf = new BinaryFormatter();
+			file = File.Create(Application.persistentDataPath +"/GameData.dat");
+			if (gameData != null) {
+				gameData.SetCandyLevels(candyLevels);
+				gameData.SetTransportLevels(transportLevels);
+				gameData.SetFruitLevels(fruitLevels);
+
+				gameData.SetCandyLevelStars(candyLevelStars);
+				gameData.SetTransportLevelStars(transportLevelStars);
+				gameData.SetFruitLevelStars(fruitLevelStars);
+
+				gameData.SetIsGameStartedForFirstTime(isGameStartedForFirstTime);
+				gameData.SetMusicVolume(musicVolume);
+
+				bf.Serialize(file,gameData);
+			}
+		} catch (Exception e) {
+
+		} finally {
+			if (file != null) {
+				file.Close ();
+			}
+		}
+	}
+
 	private void InitializeGame () {
 		LoadGameData ();
 
@@ -100,35 +128,7 @@ public class PuzzleGameSaver : MonoBehaviour {
 			LoadGameData ();
 		}
 	}
-
-	private void SaveGameData () {
-		FileStream file = null;
-		try {
-			BinaryFormatter bf = new BinaryFormatter();
-			file = File.Create(Application.persistentDataPath +"/GameData.dat");
-			if (gameData != null) {
-				gameData.SetCandyLevels(candyLevels);
-				gameData.SetTransportLevels(transportLevels);
-				gameData.SetFruitLevels(fruitLevels);
-
-				gameData.SetCandyLevelStars(candyLevelStars);
-				gameData.SetTransportLevelStars(transportLevelStars);
-				gameData.SetFruitLevelStars(fruitLevelStars);
-
-				gameData.SetIsGameStartedForFirstTime(isGameStartedForFirstTime);
-				gameData.SetMusicVolume(musicVolume);
-
-				bf.Serialize(file,gameData);
-			}
-		} catch (Exception e) {
-
-		} finally {
-			if (file != null) {
-				file.Close ();
-			}
-		}
-	}
-
+		
 	private void LoadGameData () {
 		FileStream file = null;
 		try {
