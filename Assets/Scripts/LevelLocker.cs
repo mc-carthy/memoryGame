@@ -7,6 +7,8 @@ public class LevelLocker : MonoBehaviour {
 	private PuzzleGameSaver puzzleGameSaver;
 	[SerializeField]
 	private GameObject[] levelStarsHolders, levelPadlocks;
+	[SerializeField]
+	private StarLocker starsLocker;
 
 	private bool[] candyLevels, transportLevels, fruitPuzzleLevels;
 
@@ -27,6 +29,7 @@ public class LevelLocker : MonoBehaviour {
 			for (int i = 0; i < candyLevels.Length; i++) {
 				if (candyLevels [i]) {
 					levelStarsHolders [i].SetActive(true);
+					starsLocker.ActivateStars (i, selectedPuzzle);
 				} else {
 					levelPadlocks [i].SetActive(true);
 				}
@@ -36,6 +39,7 @@ public class LevelLocker : MonoBehaviour {
 			for (int i = 0; i < transportLevels.Length; i++) {
 				if (transportLevels [i]) {
 					levelStarsHolders [i].SetActive(true);
+					starsLocker.ActivateStars (i, selectedPuzzle);
 				} else {
 					levelPadlocks [i].SetActive(true);
 				}
@@ -45,6 +49,7 @@ public class LevelLocker : MonoBehaviour {
 			for (int i = 0; i < fruitPuzzleLevels.Length; i++) {
 				if (fruitPuzzleLevels [i]) {
 					levelStarsHolders [i].SetActive(true);
+					starsLocker.ActivateStars (i, selectedPuzzle);
 				} else {
 					levelPadlocks [i].SetActive(true);
 				}
@@ -55,13 +60,13 @@ public class LevelLocker : MonoBehaviour {
 
 	public bool[] GetPuzzleLevels (string selectedPuzzle) {
 		switch (selectedPuzzle) {
-		case "candyLevels":
+		case "candyLevel":
 			return this.candyLevels;
 			break;
-		case "transportLevels":
+		case "transportLevel":
 			return this.transportLevels;
 			break;
-		case "fruitLevels":
+		case "fruitLevel":
 			return this.fruitPuzzleLevels;
 			break;
 		default:

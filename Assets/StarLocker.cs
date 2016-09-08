@@ -10,14 +10,6 @@ public class StarLocker : MonoBehaviour {
 	[SerializeField]
 	private GameObject[] level0Stars, level1Stars, level2Stars, level3Stars, level4Stars;
 
-	private void Awake () {
-
-	}
-
-	private void Start () {
-
-	}
-
 	public void ActivateStars (int level, string selectedPuzzle) {
 		GetStars ();
 
@@ -44,16 +36,16 @@ public class StarLocker : MonoBehaviour {
 			level0Stars [i].SetActive (false);
 		}
 		for (int i = 0; i < level1Stars.Length; i++) {
-			level0Stars [i].SetActive (false);
+			level1Stars [i].SetActive (false);
 		}
 		for (int i = 0; i < level2Stars.Length; i++) {
-			level0Stars [i].SetActive (false);
+			level2Stars [i].SetActive (false);
 		}
 		for (int i = 0; i < level3Stars.Length; i++) {
-			level0Stars [i].SetActive (false);
+			level3Stars [i].SetActive (false);
 		}
 		for (int i = 0; i < level4Stars.Length; i++) {
-			level0Stars [i].SetActive (false);
+			level4Stars [i].SetActive (false);
 		}
 	}
 

@@ -16,6 +16,8 @@ public class LoadPuzzleGame : MonoBehaviour {
 	private GameObject puzzleGamePanel0, puzzleGamePanel1, puzzleGamePanel2, puzzleGamePanel3, puzzleGamePanel4;
 	[SerializeField]
 	private Animator puzzleGameAnim0, puzzleGameAnim1, puzzleGameAnim2, puzzleGameAnim3, puzzleGameAnim4;
+	[SerializeField]
+	private LevelLocker levelLocker;
 	private int puzzleLevel;
 	private string selectedPuzzle;
 	private List<Animator> anims;
@@ -47,6 +49,7 @@ public class LoadPuzzleGame : MonoBehaviour {
 
 	public void BackToPuzzleLevelSelectMenu () {
 		anims = puzzleGameManager.ResetGamePlay ();
+		levelLocker.CheckWhichLevelsAreUnlocked (selectedPuzzle);
 		switch (puzzleLevel) {
 		case 0:
 			StartCoroutine(LoadPuzzleLevelSelectMenu(puzzleGamePanel0, puzzleGameAnim0));
